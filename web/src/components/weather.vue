@@ -3,7 +3,7 @@
         <div class="title">今日天气</div>
         <div>{{wea}}</div>
         <div>当前温度:{{temp}}</div>
-        <div>天气质量等级为{{air}}</div>
+        <div>空气质量等级为{{air}}</div>
         <img class="weatherImg" src="/image/cloud.png" alt="">
         <div>紫外线{{radio.level}} {{radio.desc}}</div>
         <div>穿衣指数:{{cloth.desc}}</div>
