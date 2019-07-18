@@ -5,6 +5,10 @@ import echarts from 'echarts'
 import './assets/js/rem'
 Vue.config.productionTip = false
 
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+Vue.use(VueAwesomeSwiper, /* { default global options } */)
+
 Vue.prototype.$echarts = echarts
 Vue.prototype.$http = api
 new Vue({

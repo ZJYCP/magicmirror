@@ -3,6 +3,7 @@
         <date-time class="date-time"></date-time>
         <weather class="weather"></weather>
         <home class="home"></home>
+        <news class="news"></news>
     </div>
 </template>
 
@@ -10,13 +11,15 @@
     import dateTime from './components/DateTime'
     import weather from './components/weather'
     import home from './components/home'
+    import news from './components/news'
 
     export default {
         name: 'app',
         components: {
             dateTime,
             weather,
-            home
+            home,
+            news
         }
     }
 </script>
@@ -50,8 +53,15 @@
         .home {
             /*width: ;*/
             position: relative;
-            top: 3rem;
+            top: 30%;
             margin-left: .2rem;
+        }
+
+        .news{
+            position: absolute;
+            bottom: 1rem;
+            width: 100%;
+            /*top: 0;*/
         }
 
     }

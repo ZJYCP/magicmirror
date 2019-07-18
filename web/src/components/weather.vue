@@ -30,7 +30,7 @@
                 this.tempToday=[]
                 let res = await this.$http.get('https://www.tianqiapi.com/api/', 'version=v1&city=上海')
                 let data=res.data[0]
-                console.log(res.data[0]);
+                console.log('天气信息',res.data[0]);
                 [this.temp,this.wea,this.air,this.airtip,this.radio,this.cloth]=[data.tem,data.wea,data.air_level,data.air_tips,data.index[0],data.index[3]]
                 data.hours.forEach((item)=>{
                     this.tempToday.push(parseInt((item.tem).replace('℃','')))

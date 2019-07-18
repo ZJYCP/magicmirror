@@ -11,13 +11,13 @@ const config = {
     withCredentials: false
 }
 
-// if(process.env.NODE_ENV === 'development') {
-//     config.baseURL = "/api";
-//     // 开发环境
-// } else if(process.env.NODE_ENV === 'production') {
-//     // 生产环境
-//     config.baseURL = "https://evp.51job.com";   //这里是线上api请求地址
-// }
+if(process.env.NODE_ENV === 'development') {
+    config.baseURL = "/api";
+    // 开发环境
+} else if(process.env.NODE_ENV === 'production') {
+    // 生产环境
+    config.baseURL = "https://evp.51job.com";   //这里是线上api请求地址
+}
 
 // 创建 axios 实例
 let http = axios.create(config)
