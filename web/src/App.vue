@@ -12,6 +12,7 @@
     import weather from './components/weather'
     import home from './components/home'
     import news from './components/news'
+    import { createSocket, sendWSPush } from './api/websocket'
 
     export default {
         name: 'app',
@@ -20,6 +21,57 @@
             weather,
             home,
             news
+        },
+        data(){
+            return{
+                websock: null,
+            }
+        },
+        created(){
+            // this.initWebSocket();
+
+        },
+        mounted(){
+            createSocket() //创建
+            sendWSPush(11111) //发送数据
+            //监听ws数据响应
+            const getDataFunc = function(e) {
+                console.log('11');
+                console.log(e.detail.data)
+            }
+            window.addEventListener('onmessageWS', getDataFunc)
+
+            //根据需要，销毁事件监听
+            window.removeEventListener('onmessageWS', getDataFunc)
+        },
+        methods:{
+
+            // initWebSocket(){ //初始化weosocket
+            //     const wsuri = "ws://127.0.0.1:8081";
+            //     this.websock = new WebSocket(wsuri);
+            //     this.websock.onmessage = this.websocketonmessage;
+            //     this.websock.onopen = this.websocketonopen;
+            //     this.websock.onerror = this.websocketonerror;
+            //     this.websock.onclose = this.websocketclose;
+            // },
+            // websocketonopen(){ //连接建立之后执行send方法发送数据
+            //     let actions = {"test":"12345"};
+            //     this.websocketsend(JSON.stringify(actions));
+            // },
+            // websocketonerror(){//连接建立失败重连
+            //     this.initWebSocket();
+            // },
+            // websocketonmessage(e){ //数据接收
+            //     console.log(e.data);
+            //     // const redata = JSON.parse(e.data);
+            //     const redata = e.data;
+            // },
+            // websocketsend(Data){//数据发送
+            //     this.websock.send(Data);
+            // },
+            // websocketclose(e){  //关闭
+            //     console.log('断开连接',e);
+            // },
         }
     }
 </script>

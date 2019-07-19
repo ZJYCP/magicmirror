@@ -85,7 +85,7 @@
                         },
                     },
                     series: [{
-                        name: '销量',
+                        name: '气温',
                         type: 'line',
                         smooth: true,
                         data: _this.tempToday,
