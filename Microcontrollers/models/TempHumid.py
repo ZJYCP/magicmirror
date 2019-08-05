@@ -15,6 +15,8 @@ import logging as _logging
 
 class TempHumid:
     pin = 5
+    pre_temp = 0
+    pre_humid = 0
 
     def __init__(self):
         pass
@@ -25,6 +27,12 @@ class TempHumid:
 
     def get_humid(self):
         return 10
+
+    def is_same(self, t, h):
+        if t != self.pre_temp or h != self.pre_humid:
+            self.pre_temp = t
+            self.pre_humid = h
+            return True
 
     def _callback(self, callback, *args):
         if callback:

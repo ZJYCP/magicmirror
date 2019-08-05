@@ -41,9 +41,9 @@ def _init():
 def temp_humid_task():
     temp = th.get_temp()
     humid = th.get_humid()
-    logger.debug('温度:%s,湿度:%s' % (temp, humid))
-    # TODO 数据有变化才进行数据库写入
-    db.insertsqlone(tablename="temp_humid", temp=temp, humid=humid)
+    if th.is_same(temp,humid):
+        logger.debug('温度:%s,湿度:%s' % (temp, humid))
+        db.insertsqlone(tablename="temp_humid", temp=temp, humid=humid)
 
 
 def run():
@@ -52,7 +52,7 @@ def run():
     scheduler.add_job(temp_humid_task, 'interval', seconds=5)
     # 启动调度任务
     scheduler.start()
-
+    # 启动websocket服务
     ws_server.begin()
 
 
