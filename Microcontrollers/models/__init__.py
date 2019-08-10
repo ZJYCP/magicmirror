@@ -5,5 +5,5 @@
 @contact: chnzjycp@foxmail.com
 @file: __init__.py
 @time: 19-8-5 下午1:04
-@desc:
+@desc: 传感器类
 """

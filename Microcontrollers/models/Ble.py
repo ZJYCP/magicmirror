@@ -9,11 +9,14 @@
 """
 
 import serial
+import time
+import threading
 
 
 class BLE:
     port = ''
-    baud_rate = 9600
+    baud_rate = 115200
 
     def __init__(self):
         self.ser = serial.Serial(self.port, self.baud_rate)
+
