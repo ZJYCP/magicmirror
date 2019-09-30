@@ -18,5 +18,26 @@ class BLE:
     baud_rate = 115200
 
     def __init__(self):
-        self.ser = serial.Serial(self.port, self.baud_rate)
+        # self.ser = serial.Serial(self.port, self.baud_rate)
+        self.sensors = []
+        self.listen_msg()
 
+    # 监听
+    def listen_msg(self):
+        data = {'code': 1,'data': '1111'}
+        if True:
+            self.notifySensor(data)
+
+    # 通知
+    def notifySensor(self, data):
+        for i, sensor in enumerate(self.sensors):
+            sensor.update(data)
+
+    # 添加传感器
+    def attach(self, sensor):
+        self.sensors.append(sensor)
+
+
+if __name__ == 'main':
+    blue = BLE()
+    blue.listen_msg()

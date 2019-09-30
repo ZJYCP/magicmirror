@@ -16,9 +16,11 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from utils.db.dbContr import MirrorMysql
 from utils.websocket.ws import WebSocketServer
 
+import models.Infrared as remoteSen
+
 
 def _init():
-    global th, db,ws_server,scheduler
+    global th, db, ws_server, scheduler
 
     # 实例化温湿度传感器对象
     th = TempHumid()
@@ -41,12 +43,14 @@ def _init():
 def temp_humid_task():
     temp = th.get_temp()
     humid = th.get_humid()
-    if th.is_same(temp,humid):
+    if th.is_same(temp, humid):
         logger.debug('温度:%s,湿度:%s' % (temp, humid))
         db.insertsqlone(tablename="temp_humid", temp=temp, humid=humid)
 
 
 def run():
+    # 传感器
+    remoteSen.start()
 
     # 添加温湿度监测调度任务
     scheduler.add_job(temp_humid_task, 'interval', seconds=5)
@@ -59,5 +63,6 @@ def run():
 if __name__ == '__main__':
     _init()
     run()
+
     while 1:
         pass
