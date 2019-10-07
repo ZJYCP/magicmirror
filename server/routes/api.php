@@ -15,4 +15,5 @@ use Illuminate\Http\Request;
 
 Route::namespace('Api')->group(function (){
     Route::any('micro/temp','MicroController@temp')->name('micro.temp');
+    Route::any('micro/alarm/{type}','MicroController@alarm')->name('micro.alarm');
 });
