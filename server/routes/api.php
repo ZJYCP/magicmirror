@@ -14,5 +14,5 @@ use Illuminate\Http\Request;
 */
 
 Route::namespace('Api')->group(function (){
-    Route::get('users','UserController@index')->name('users.index');
+    Route::any('micro/temp','MicroController@temp')->name('micro.temp');
 });

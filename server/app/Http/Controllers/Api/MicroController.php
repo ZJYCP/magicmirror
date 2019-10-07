@@ -4,17 +4,19 @@ namespace App\Http\Controllers\Api;
 
 use App\Enviroment;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Log;
 
-class UserController extends Controller
+class MicroController extends Controller
 {
     //
 
-    public function index()
+    /**
+     *
+     */
+    public function temp(Request $request)
     {
 
-        Log::info('api-users');
+        Log::info('insert enviroment data');
 //        $app = app('wechat.official_account');
 //
 //
@@ -31,8 +33,17 @@ class UserController extends Controller
 //    ]);
 //        dd($res);
 
-        $ress=Enviroment::all();
-        dd($ress);
+//        $ress=Enviroment::all();
+        $envData=$request->post();
+        $enviroment=new Enviroment;
+
+        $enviroment->fill($envData);
+
+        if($enviroment->save()){
+            return $this->success('新增环境数据成功 ');
+        }else{
+            return $this->failed('有错误');
+        }
 
     }
 }
