@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::any('aa',function (){
-    return 'aaa';
+Route::any('/a',function (){
+    event(new \App\Events\SayHelloEvent('pusher'));
+    return 'aa';
 });
 
 Route::any('/wechat','WeChatController@serve');
