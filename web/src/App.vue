@@ -12,8 +12,8 @@
     import weather from './components/weather'
     import home from './components/home'
     import news from './components/news'
-    import { createSocket, sendWSPush ,closeWs} from './api/websocket'
-
+    // import { createSocket, sendWSPush ,closeWs} from './api/websocket'
+    import Pusher from 'pusher-js/dist/web/pusher.min.js'
     export default {
         name: 'app',
         components: {
@@ -31,21 +31,32 @@
         },
 
         mounted(){
-            window.onbeforeunload = e => {
-                //根据需要，销毁事件监听
-                window.removeEventListener('onmessageWS', getDataFunc)
-                closeWs()
-            };
+            // window.onbeforeunload = e => {
+            //     //根据需要，销毁事件监听
+            //     window.removeEventListener('onmessageWS', getDataFunc)
+            //     closeWs()
+            // };
+            //
+            // createSocket() //创建
+            // sendWSPush(11111) //发送数据
+            //
+            // //监听ws数据响应
+            // const getDataFunc = function(e) {
+            //     console.log(e.detail.data)
+            // }
+            // window.addEventListener('onmessageWS', getDataFunc)
+            //
 
-            createSocket() //创建
-            sendWSPush(11111) //发送数据
-
-            //监听ws数据响应
-            const getDataFunc = function(e) {
-                console.log(e.detail.data)
-            }
-            window.addEventListener('onmessageWS', getDataFunc)
-
+            //
+            // Pusher.logToConsole=true;
+            var pusher=new Pusher('6a9ab7f96acaf8cbb06f',{
+                cluster:'ap3',
+                forceTLS:true
+            });
+            var channel=pusher.subscribe('say-hello');
+            channel.bind('App\\Events\\SayHelloEvent',function (data) {
+                console.log(data);
+            })
 
         },
         methods:{
