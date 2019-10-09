@@ -53,8 +53,8 @@
                 cluster:'ap3',
                 forceTLS:true
             });
-            var channel=pusher.subscribe('say-hello');
-            channel.bind('App\\Events\\SayHelloEvent',function (data) {
+            var channel=pusher.subscribe('alarm');
+            channel.bind('App\\Events\\PushAlarmEvent',function (data) {
                 console.log(data);
             })
 

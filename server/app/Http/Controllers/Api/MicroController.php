@@ -76,18 +76,23 @@ class MicroController extends Controller
 
 
     /**
+     * 警报
      * @param $type
      * @return mixed
      */
     public function alarm($type)
     {
 
+
         $users = $this->getUserOpenid(520);
         if ($type == 'infrared') {
 
+            //触发广播事件
+            event(new \App\Events\PushAlarmEvent(['time'=>time(),'alarmType'=>$type]));
+
             $template_id = 'ywUbmiyxDXBMD13qsv7yNTqW7kNQK_hXyRfbmog-U-c';
             $data = [
-                'temp' => '23.3',
+                'temp' => '23.3',  //TODO 从数据库拿
                 'level' => date('Y-m-d h:i:s', time()),
             ];
             $res_flag = 1;
