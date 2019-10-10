@@ -59,6 +59,7 @@ class MicroController extends Controller
         Log::info('insert enviroment data');
 
         $envData = $request->post();
+        Log::info($envData);
         if (count($envData) != 3) {
             return $this->failed('数据错误', 400, 1003);
         }
