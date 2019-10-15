@@ -59,13 +59,13 @@ def temp_humid_task():
     temp = th.get_temp()
     humid = th.get_humid()
 
+    print('temp_task')
     url = "http://mirror.com/api/micro/temp"
     formdata = {
         'temp': 11,
         'humid': 22,
         'sound': 33
     }
-    print('same')
 
     if th.is_same(temp, humid):
         response = requests.post(url, data=formdata)

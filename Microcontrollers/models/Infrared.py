@@ -5,11 +5,12 @@
 @contact: chnzjycp@foxmail.com
 @file: Infrared.py
 @time: 19-9-30 上午11:02
-@desc: 红外模块
+@desc: 红外模块 //fix:所有远端传感器
 """
 
 from models.Ble import BLE
 from utils.logger import *
+import requests
 
 
 class Infraed:
@@ -18,18 +19,33 @@ class Infraed:
         self.ble.attach(self)
 
     def update(self, data):
-        # 数据库操作
-        target = 1
-        if target == 1:
-            logger.debug(data)
+        url = 'http://baidu.com'
+
+        if data['data'] == 1:
+            url = "http://mirror.com/api/micro/alarm/infrared"
+        response = requests.get(url)
+        print(response)
 
 
-class Fire:
-    pass
+
+
+class Fires:
+    def __init__(self, ble):
+        self.ble = ble
+        self.ble.attach(self)
+
+    def update(self, data):
+        url = 'http://baidu.com'
+
+        if data['data'] == 1:
+            url = "http://mirror.com/api/micro/alarm/infrared"
+        response = requests.get(url)
+        print(response)
 
 
 def start():
-    logger.debug('start inf')
+    logger.debug('start 远端传感器')
     bl = BLE()
     inf = Infraed(bl)
+    fire=Fires(bl)
     bl.listen_msg()

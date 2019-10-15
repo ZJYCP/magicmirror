@@ -20,11 +20,11 @@ class BLE:
     def __init__(self):
         # self.ser = serial.Serial(self.port, self.baud_rate)
         self.sensors = []
-        self.listen_msg()
+        #self.listen_msg()
 
     # 监听
     def listen_msg(self):
-        data = {'code': 1,'data': '1111'}
+        data = {'code': 1,'data': 1}
         if True:
             self.notifySensor(data)
 
@@ -39,5 +39,6 @@ class BLE:
 
 
 if __name__ == 'main':
-    blue = BLE()
-    blue.listen_msg()
+    pass
+    # blue = BLE()
+    # blue.listen_msg()

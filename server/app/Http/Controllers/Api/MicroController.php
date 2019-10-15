@@ -114,4 +114,9 @@ class MicroController extends Controller
         }
 
     }
+
+    public function get_data()
+    {
+
+    }
 }
